@@ -9,19 +9,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Root route for health check
-app.get("/", (req, res) => {
-  res.send("Backend Server is Running");
-});
-
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 
-// Routes - items are now at /api/items
+// Routes
 const itemRoutes = require('./routes/items');
-app.use('/api', itemRoutes);
+app.use('/items', itemRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;
