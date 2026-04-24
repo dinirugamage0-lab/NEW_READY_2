@@ -17,6 +17,9 @@ const app = express();
 // Middleware
 app.use(cors()); // Enable Cross-Origin Resource Sharing for frontend access
 app.use(express.json()); // Parse incoming JSON requests
+app.get("/", (req, res) => {
+  res.send("Welcome to the Inventory Management API");
+});
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
